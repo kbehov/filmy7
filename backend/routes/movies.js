@@ -1,0 +1,16 @@
+const router = require('express').Router()
+const moviesController = require('../controllers/movies')
+router.get('/movies/', moviesController.getAllMovies)
+router.post('/api/v/1/movies/import', moviesController.importer)
+router.post('/api/v/1/movies/import-tv-series', moviesController.importTvSeries)
+router.post('/api/v/1/movies/views/:id', moviesController.increaseViews)
+router.get('/api/v/1/movies/get-movie/:id', moviesController.getMovieById)
+router.get('/movie/:slug', moviesController.getMovieBySlug)
+router.get('/movies/search/', moviesController.searchMovie)
+router.post('/movies/recommend/:id', moviesController.getRecommendations)
+router.get('/movies/count', moviesController.countMovies)
+router.get('/movies/site-map', moviesController.getSiteMap)
+router.get('/movies/series-sitemap', moviesController.getSeriesSiteMap)
+router.get('/movies/series-seasons/:id', moviesController.getSeriesSeasons)
+
+module.exports = router
