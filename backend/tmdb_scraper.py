@@ -316,10 +316,10 @@ def get_movies(start_page: Optional[int] = None):
             "api_key": API_KEY,
             "language": LANGUAGE,
             "page": str(page),
-            # "sort_by": "vote_average.asc",
-            "vote_average.gte": 4.1,  # Keep only movies with rating > 4
-            "vote_count.gte": 10,  # Avoid low-vote titles with unstable ratings
-            "primary_release_date.gte": "1980-01-01",  # Keep release year > 1980,
+            "sort_by": "popularity.asc",
+            "vote_average.gte": 5.0,  # Keep only movies with rating > 4
+            "vote_count.gte": 100,  # Avoid low-vote titles with unstable ratings
+            "primary_release_date.gte": "1969-01-01",  # Keep release year > 1980,
             "primary_release_date.lte": "2023-01-01",  # Keep release year > 1980
         }
         data = get_json_response(MOVIE_LIST_URL, params)
