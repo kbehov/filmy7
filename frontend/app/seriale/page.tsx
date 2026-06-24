@@ -1,16 +1,12 @@
-import MovieCard from "@/components/cards/movie-card"
-import { FilmiHero } from "@/components/filmi-hero"
-import MovieFilters from "@/components/movies/movie-filters"
-import SmartPagination from "@/components/ui/smart-pagination"
-import {
-  buildFilmiPaginationQuery,
-  normalizeCatalogSort,
-  normalizeCatalogYear,
-} from "@/lib/movies-catalog"
-import { buildSerialiListingMetadata } from "@/seo/seriali-list-metadata"
-import { buildMoviesListQuery, getMovies } from "@/services/movies.service"
-import type { Metadata } from "next"
-import { Suspense } from "react"
+import MovieCard from '@/components/cards/movie-card'
+import { FilmiHero } from '@/components/filmi-hero'
+import MovieFilters from '@/components/movies/movie-filters'
+import SmartPagination from '@/components/ui/smart-pagination'
+import { buildFilmiPaginationQuery, normalizeCatalogSort, normalizeCatalogYear } from '@/lib/movies-catalog'
+import { buildSerialiListingMetadata } from '@/seo/seriali-list-metadata'
+import { buildMoviesListQuery, getMovies } from '@/services/movies.service'
+import type { Metadata } from 'next'
+import { Suspense } from 'react'
 
 export async function generateMetadata({
   searchParams,
@@ -22,12 +18,12 @@ export async function generateMetadata({
   const year = normalizeCatalogYear(sp.year)
   const { totalPages, moviesCount } = await getMovies(
     buildMoviesListQuery({
-      contentType: "series",
+      contentType: 'series',
       page: 1,
       sort,
       year,
-      type: "series",
-    })
+      type: 'series',
+    }),
   )
   return buildSerialiListingMetadata({
     page: 1,
@@ -38,11 +34,7 @@ export async function generateMetadata({
   })
 }
 
-export default async function Page({
-  searchParams,
-}: {
-  searchParams: Promise<{ sort?: string; year?: string }>
-}) {
+export default async function Page({ searchParams }: { searchParams: Promise<{ sort?: string; year?: string }> }) {
   const sp = await searchParams
   const sort = normalizeCatalogSort(sp.sort)
   const year = normalizeCatalogYear(sp.year)
@@ -57,9 +49,9 @@ export default async function Page({
       page: 1,
       sort,
       year,
-      type: "series",
-      contentType: "series",
-    })
+      type: 'series',
+      contentType: 'series',
+    }),
   )
   return (
     <div className="min-h-svh p-6 lg:p-10">
@@ -79,13 +71,13 @@ export default async function Page({
           className="grid scroll-mt-28 grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4"
           tabIndex={-1}
         >
-          {series.map((item) => (
+          {series.map(item => (
             <MovieCard key={item._id} movie={item} />
           ))}
         </div>
         <SmartPagination
           meta={{ currentPage: page, totalPages }}
-          baseUrl="/seriali"
+          baseUrl="/seriale"
           extraQuery={buildFilmiPaginationQuery(sort, year)}
         />
       </div>

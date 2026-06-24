@@ -6,8 +6,8 @@ export const revalidate = 86400
 
 const STATIC_PATHS: MetadataRoute.Sitemap = [
   { url: `${siteOrigin}/`, lastModified: new Date(), changeFrequency: 'daily', priority: 1 },
-  { url: `${siteOrigin}/filmi`, changeFrequency: 'daily', priority: 0.9 },
-  { url: `${siteOrigin}/seriali`, changeFrequency: 'daily', priority: 0.9 },
+  { url: `${siteOrigin}/filmy`, changeFrequency: 'daily', priority: 0.9 },
+  { url: `${siteOrigin}/seriale`, changeFrequency: 'daily', priority: 0.9 },
   { url: `${siteOrigin}/trending`, changeFrequency: 'daily', priority: 0.9 },
   { url: `${siteOrigin}/actors`, changeFrequency: 'weekly', priority: 0.8 },
   { url: `${siteOrigin}/genres`, changeFrequency: 'weekly', priority: 0.8 },

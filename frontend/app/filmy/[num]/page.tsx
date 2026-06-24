@@ -1,5 +1,5 @@
-import MovieCard from "@/components/cards/movie-card"
-import MovieFilters from "@/components/movies/movie-filters"
+import MovieCard from '@/components/cards/movie-card'
+import MovieFilters from '@/components/movies/movie-filters'
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -7,17 +7,13 @@ import {
   BreadcrumbList,
   BreadcrumbPage,
   BreadcrumbSeparator,
-} from "@/components/ui/breadcrumb"
-import SmartPagination from "@/components/ui/smart-pagination"
-import {
-  buildFilmiPaginationQuery,
-  normalizeCatalogSort,
-  normalizeCatalogYear,
-} from "@/lib/movies-catalog"
-import { buildFilmiListingMetadata } from "@/seo/filmi-list-metadata"
-import { buildMoviesListQuery, getMovies } from "@/services/movies.service"
-import type { Metadata } from "next"
-import { Suspense } from "react"
+} from '@/components/ui/breadcrumb'
+import SmartPagination from '@/components/ui/smart-pagination'
+import { buildFilmiPaginationQuery, normalizeCatalogSort, normalizeCatalogYear } from '@/lib/movies-catalog'
+import { buildFilmiListingMetadata } from '@/seo/filmi-list-metadata'
+import { buildMoviesListQuery, getMovies } from '@/services/movies.service'
+import type { Metadata } from 'next'
+import { Suspense } from 'react'
 
 export async function generateMetadata({
   params,
@@ -36,7 +32,7 @@ export async function generateMetadata({
       page: pageNum,
       sort,
       year,
-    })
+    }),
   )
   return buildFilmiListingMetadata({
     page: pageNum,
@@ -59,9 +55,7 @@ export default async function Page({
   const sort = normalizeCatalogSort(sp.sort)
   const year = normalizeCatalogYear(sp.year)
   const catalogListQuery = buildFilmiPaginationQuery(sort, year)
-  const filmiBaseHref = catalogListQuery
-    ? `/filmi?${catalogListQuery}`
-    : "/filmi"
+  const filmiBaseHref = catalogListQuery ? `/filmi?${catalogListQuery}` : '/filmi'
   const pageNum = Math.max(1, parseInt(num, 10) || 1)
   const {
     data: movies,
@@ -72,7 +66,7 @@ export default async function Page({
       page: pageNum,
       sort,
       year,
-    })
+    }),
   )
   return (
     <div className="min-h-svh p-6 lg:p-10">
@@ -92,15 +86,11 @@ export default async function Page({
           <MovieFilters />
         </Suspense>
         <div className="grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-4">
-          {movies.map((movie) => (
+          {movies.map(movie => (
             <MovieCard key={movie._id} movie={movie} />
           ))}
         </div>
-        <SmartPagination
-          meta={{ currentPage: page, totalPages }}
-          baseUrl="/filmi"
-          extraQuery={catalogListQuery}
-        />
+        <SmartPagination meta={{ currentPage: page, totalPages }} baseUrl="/filmy" extraQuery={catalogListQuery} />
       </div>
     </div>
   )

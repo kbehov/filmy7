@@ -1,5 +1,5 @@
-import MovieCard from "@/components/cards/movie-card"
-import MovieFilters from "@/components/movies/movie-filters"
+import MovieCard from '@/components/cards/movie-card'
+import MovieFilters from '@/components/movies/movie-filters'
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -7,17 +7,13 @@ import {
   BreadcrumbList,
   BreadcrumbPage,
   BreadcrumbSeparator,
-} from "@/components/ui/breadcrumb"
-import SmartPagination from "@/components/ui/smart-pagination"
-import {
-  buildFilmiPaginationQuery,
-  normalizeCatalogSort,
-  normalizeCatalogYear,
-} from "@/lib/movies-catalog"
-import { buildSerialiListingMetadata } from "@/seo/seriali-list-metadata"
-import { buildMoviesListQuery, getMovies } from "@/services/movies.service"
-import type { Metadata } from "next"
-import { Suspense } from "react"
+} from '@/components/ui/breadcrumb'
+import SmartPagination from '@/components/ui/smart-pagination'
+import { buildFilmiPaginationQuery, normalizeCatalogSort, normalizeCatalogYear } from '@/lib/movies-catalog'
+import { buildSerialiListingMetadata } from '@/seo/seriali-list-metadata'
+import { buildMoviesListQuery, getMovies } from '@/services/movies.service'
+import type { Metadata } from 'next'
+import { Suspense } from 'react'
 
 export async function generateMetadata({
   params,
@@ -33,12 +29,12 @@ export async function generateMetadata({
   const pageNum = Math.max(1, parseInt(num, 10) || 1)
   const { totalPages, moviesCount } = await getMovies(
     buildMoviesListQuery({
-      contentType: "series",
+      contentType: 'series',
       page: pageNum,
       sort,
       year,
-      type: "series",
-    })
+      type: 'series',
+    }),
   )
   return buildSerialiListingMetadata({
     page: pageNum,
@@ -61,9 +57,7 @@ export default async function Page({
   const sort = normalizeCatalogSort(sp.sort)
   const year = normalizeCatalogYear(sp.year)
   const catalogListQuery = buildFilmiPaginationQuery(sort, year)
-  const serialiBaseHref = catalogListQuery
-    ? `/seriali?${catalogListQuery}`
-    : "/seriali"
+  const serialiBaseHref = catalogListQuery ? `/seriali?${catalogListQuery}` : '/seriali'
   const pageNum = Math.max(1, parseInt(num, 10) || 1)
   const {
     data: series,
@@ -71,12 +65,12 @@ export default async function Page({
     page,
   } = await getMovies(
     buildMoviesListQuery({
-      contentType: "series",
+      contentType: 'series',
       page: pageNum,
       sort,
       year,
-      type: "series",
-    })
+      type: 'series',
+    }),
   )
   return (
     <div className="min-h-svh p-6 lg:p-10">
@@ -96,15 +90,11 @@ export default async function Page({
           <MovieFilters catalogBasePath="/seriali" />
         </Suspense>
         <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4">
-          {series.map((item) => (
+          {series.map(item => (
             <MovieCard key={item._id} movie={item} />
           ))}
         </div>
-        <SmartPagination
-          meta={{ currentPage: page, totalPages }}
-          baseUrl="/seriali"
-          extraQuery={catalogListQuery}
-        />
+        <SmartPagination meta={{ currentPage: page, totalPages }} baseUrl="/seriale" extraQuery={catalogListQuery} />
       </div>
     </div>
   )

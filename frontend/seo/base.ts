@@ -74,7 +74,7 @@ export const seoBase = {
     images: [
       defaultOgImage,
       {
-        url: '/filmi9-logo.png',
+        url: '/filmy7-logo.png',
         width: 512,
         height: 512,
         alt: 'Filmy7 — logo',

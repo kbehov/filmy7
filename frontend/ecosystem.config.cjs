@@ -8,11 +8,11 @@ module.exports = {
       exec_mode: 'fork',
       autorestart: true,
       watch: false,
-      max_memory_restart: '800M',
-      node_args: '--max-old-space-size=700',
+      max_memory_restart: '500M',
+      node_args: '--max-old-space-size=400',
       env: {
         NODE_ENV: 'production',
-        PORT: 3005,
+        PORT: 3636,
         HOSTNAME: '0.0.0.0',
       },
 

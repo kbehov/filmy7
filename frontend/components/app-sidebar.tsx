@@ -12,8 +12,8 @@ export type NavItem = { title: string; url: string; icon: LucideIcon }
 
 const menuItems: NavItem[] = [
   { title: 'Główna', url: '/', icon: Home },
-  { title: 'Filmy', url: '/filmi', icon: Camera },
-  { title: 'Seriale', url: '/seriali', icon: Tv },
+  { title: 'Filmy', url: '/filmy', icon: Camera },
+  { title: 'Seriale', url: '/seriale', icon: Tv },
   { title: 'W trendzie', url: '/trending', icon: Flame },
   { title: 'Aktorzy', url: '/actors', icon: Users },
   { title: 'Gatunki', url: '/genres', icon: LayoutGrid },
@@ -28,10 +28,10 @@ const AppSidebar = ({ genres }: { genres: GetGenresResponse }) => {
           aria-label="Filmi9 — strona główna"
           className="group/brand flex items-center gap-2.5 rounded-xl outline-none focus-visible:ring-2 focus-visible:ring-sidebar-ring"
         >
-          <Image src="/filmi9-logo.png" alt="Filmi9" width={36} height={36} />
+          <Image src="/filmy7-logo.png" alt="Filmy7" width={36} height={36} />
           <span className="flex min-w-0 flex-col leading-none">
             <span className="text-lg font-black tracking-tight">
-              Filmi<span className="text-primary">PL</span>
+              Filmy<span className="text-primary">7</span>
             </span>
             <span className="mt-1.5 truncate text-[11px] font-medium tracking-wide text-muted-foreground">
               Oglądaj <strong>filmy i seriale</strong>
