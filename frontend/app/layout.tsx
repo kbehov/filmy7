@@ -6,8 +6,10 @@ import { SidebarInset, SidebarProvider } from '@/components/ui/sidebar'
 import { cn } from '@/lib/utils'
 import { seoBase } from '@/seo/base'
 import { getGenres } from '@/services/genres.service'
+import { GoogleAnalytics } from '@next/third-parties/google'
 import { Geist, Geist_Mono } from 'next/font/google'
 import './globals.css'
+
 const geist = Geist({ subsets: ['latin'], variable: '--font-sans' })
 
 const fontMono = Geist_Mono({
@@ -38,6 +40,7 @@ export default async function RootLayout({
               <Footer />
             </SidebarInset>
           </SidebarProvider>
+          <GoogleAnalytics gaId={process.env.GA_PUBLIC_ID || 'G-RCJN3922NX'} />
         </ThemeProvider>
       </body>
     </html>

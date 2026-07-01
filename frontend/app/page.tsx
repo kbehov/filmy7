@@ -26,14 +26,14 @@ export default async function Page() {
           <MoviesSection
             movies={movies.data}
             title="Filmy"
-            href="/filmi"
+            href="/filmy"
             description="Najświeższe filmy w katalogu — wybierz tytuł i oglądaj od razu"
             icon={<Camera />}
           />
           <MoviesSection
             movies={series.data}
             title="Seriale"
-            href="/seriali"
+            href="/seriale"
             description="Nowe sezony i ulubione seriale na domowy maraton"
             icon={<Tv />}
           />
